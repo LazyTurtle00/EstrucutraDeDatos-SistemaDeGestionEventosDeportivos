@@ -41,6 +41,198 @@ El patrón Modelo-Vista-Controlador (MVC) separa la lógica de negocio (Modelo),
 Todos los integrantes participarán en la integración del sistema, pruebas, corrección de errores y también, en el trabajo en equipo para los entregables del presente proyecto.
 
 ---
+``` mermaid
+---
+config:
+  theme: dark
+---
+classDiagram
+    direction TB
+    namespace vista {
+        class FrmLogin {
+            - btnAdmin: JButton
+            - btnEspectador: JButton
+            + getSeleccion() : String
+        }
+        class FrmMenuAdmin {
+            - btnGestEventos: JButton
+            - btnGestParticipantes: JButton
+            - btnProgPartido: JButton
+            - btnRegResultados: JButton
+            - btnVerFiltros: JButton
+        }
+        class FrmEvento {
+            - txtNombre: JTextField
+            - txtFecha: JTextField
+            - txtLugar: JTextField
+            + getDatosEvento() : String[]
+        }
+        class FrmParticipante {
+            - txtNombre: JTextField
+            - txtEdad: JTextField
+            - txtEquipo: JTextField
+            - btnAgregarJugador: JButton
+        }
+        class FrmProgramarPartido {
+            - cmbEquipo1: JComboBox
+            - cmbEquipo2: JComboBox
+            + getEquiposSeleccionados() : String[]
+        }
+        class FrmRegistrarResultado {
+            - cmbPartidoPendiente: JComboBox
+            - txtGolesEq1: JTextField
+            - txtGolesEq2: JTextField
+            + getMarcador() : int[]
+        }
+        class FrmFiltros {
+            - cmbTipoFiltro: JComboBox
+            - tblResultados: JTable
+            + mostrarEventos(lista: ListaSimpleEventos) : void
+        }
+    }
+
+    namespace controlador {
+        class CtrPrincipal {
+            - modeloSistema: Sistema
+            - vistaLogin: FrmLogin
+            - vistaMenu: FrmMenuAdmin
+            + iniciar() : void
+        }
+        class CtrEventos {
+            - modeloSistema: Sistema
+            - vistaEvento: FrmEvento
+            - vistaParticipante: FrmParticipante
+        }
+        class CtrPartidos {
+            - eventoActual: Evento
+            - vistaProgramar: FrmProgramarPartido
+            - vistaResultados: FrmRegistrarResultado
+        }
+    }
+
+    namespace modelo {
+        class Sistema {
+            - eventos: ListaSimpleEventos
+            - registroAcciones: PilaEstatica
+            - colaImpresion: ColaEstatica
+            + validarLogin(rol: String) : boolean
+            + crearEvento(nombre: String, fecha: String, ubicacion: String) : void
+            + buscarEvento(nombre: String) : Evento
+            + getEventosPasados() : ListaSimpleEventos
+            + getEventosFuturos() : ListaSimpleEventos
+        }
+        class Evento {
+            - nombre: String
+            - fecha: String
+            - ubicacion: String
+            - participantes: ListaDobleParticipantes
+            - partidosProgramados: ColaDinamicaPartidos
+            - historialResultados: PilaDinamicaResultados
+            + agregarParticipante(p: Participante) : void
+            + programarPartido(local: String, visitante: String) : void
+            + registrarResultado(local: String, visitante: String, gL: int, gV: int) : void
+        }
+        class Participante {
+            - nombre: String
+            - edad: int
+            - nombreEquipo: String
+            - esCapitan: boolean
+        }
+        class Partido {
+            - equipoLocal: String
+            - equipoVisitante: String
+            - golesLocal: int
+            - golesVisitante: int
+            - estado: String
+            + finalizar(gL: int, gV: int) : void
+        }
+        class ListaSimpleEventos {
+            - cabeza: NodoEvento
+            + insertar(e: Evento) : void
+        }
+        class NodoEvento {
+            - dato: Evento
+            - siguiente: NodoEvento
+        }
+        class NodoParticipante {
+            - dato: Participante
+            - anterior: NodoParticipante
+            - siguiente: NodoParticipante
+        }
+        class ColaDinamicaPartidos {
+            - frente: NodoPartido
+            - fin: NodoPartido
+            + encolar(p: Partido) : void
+            + desencolar() : Partido
+            + frente() : Partido
+            + estaVacia() : boolean
+        }
+        class NodoPartido {
+            - dato: Partido
+            - siguiente: NodoPartido
+        }
+        class PilaDinamicaResultados {
+            - cima: NodoResultado
+            - tamano: int
+            + estaVacia() : boolean
+            + apilar(p: Partido) : void
+            + desapilar() : Partido
+            + mostrarPila() : String
+        }
+        class NodoResultado {
+            - dato: Partido
+            - siguiente: NodoResultado
+        }
+        class PilaEstatica {
+            - pila: String[]
+            - top: int
+            - maxSize: int
+            + PilaEstatica(tamano: int)
+            + push(accion: String) : void
+            + pop() : String
+            + toString() : String
+        }
+        class ColaEstatica {
+            - cola: String[]
+            - frente: int
+            - fin: int
+            - maxSize: int
+            + ColaEstatica(tamano: int)
+            + encolar(reporte: String) : void
+            + desencolar() : String
+            + estaVacia() : boolean
+        }
+        class ListaDobleParticipantes {
+            - cabeza: NodoParticipante
+            - cola: NodoParticipante
+            + insertar(p: Participante) : void
+            + buscarRecursivo(nombre: String) : Participante
+        }
+    }
+
+    CtrPrincipal --> Sistema
+    CtrPrincipal --> FrmLogin
+    CtrPrincipal --> FrmMenuAdmin
+    CtrEventos --> Sistema
+    CtrEventos --> FrmEvento
+    CtrEventos --> FrmParticipante
+    CtrPartidos --> Evento
+    CtrPartidos --> FrmProgramarPartido
+    CtrPartidos --> FrmRegistrarResultado
+    Sistema *-- ListaSimpleEventos
+    Sistema *-- PilaEstatica : usa para registro
+    Sistema *-- ColaEstatica : usa para impresion
+    ListaSimpleEventos *-- NodoEvento
+    NodoEvento --> Evento
+    Evento *-- ListaDobleParticipantes
+    Evento *-- ColaDinamicaPartidos
+    Evento *-- PilaDinamicaResultados
+    ListaDobleParticipantes *-- NodoParticipante
+    NodoParticipante --> Participante
+    ColaDinamicaPartidos *-- NodoPartido
+    NodoPartido --> Partido
+    PilaDinamicaResultados *-- NodoResultado
+    NodoResultado --> Partido ```
 
 # 5. Imágenes del diseño
 1-
