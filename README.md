@@ -42,125 +42,197 @@ Todos los integrantes participarán en la integración del sistema, pruebas, cor
 
 ---
 ``` mermaid
+---
+config:
+  theme: dark
+---
 classDiagram
 direction TB
-	namespace modelo {
-        class Sistema {
-	        -ListaSimpleEventos listaEventos
-	        +validarLogin(String rol) boolean
-	        +getEventosPasados() ListaSimpleEventos
-	        +getEventosFuturos() ListaSimpleEventos
-	 
-        }
-
-        class Evento {
-	        -String nombre
-	        -String fecha
-	        -String ubicacion
-	        -ColaPartidos partidosProgramados
-	        -PilaResultados historialResultados
-	        -ListaDobleParticipantes participantes
-        }
-
-        class Participante {
-	        -String nombre
-	        -int edad
-	        -String nombreEquipo
-	        -boolean esCapitan
-        }
-
-        class Partido {
-	        -String equipoLocal
-	        -String equipoVisitante
-	        -int golesLocal
-	        -int golesVisitante
-	        -String estado
-        }
-
-	}
 	namespace vista {
         class FrmLogin {
-	        -btnAdmin
-	        -btnEspectador
-	        +getSeleccion() String
+	        - btnAdmin: JButton
+	        - btnEspectador: JButton
+	        + getSeleccion() : String
         }
 
         class FrmMenuAdmin {
-	        -btnGestEventos
-	        -btnGestParticipantes
-	        -btnProgPartido
-	        -btnRegResultados
-	        -btnVerFiltros
+	        - btnGestEventos: JButton
+	        - btnGestParticipantes: JButton
+	        - btnProgPartido: JButton
+	        - btnRegResultados: JButton
+	        - btnVerFiltros: JButton
         }
 
         class FrmEvento {
-	        -txtNombre
-	        -txtFecha
-	        -txtLugar
-	        -btnGuardar
-	        +getDatosEvento() String[]
-        }
-
-        class FrmProgramarPartido {
-	        -cmbEquipo1
-	        -cmbEquipo2
-	        -btnProgramar
-        }
-
-        class FrmRegistrarResultado {
-	        -cmbPartidoPendiente
-	        -txtGolesEq1
-	        -txtGolesEq2
-	        -btnGuardarResultado
-        }
-
-        class FrmFiltros {
-	        -cmbTipoFiltro
-	        -tblResultados
-	        +mostrarEventos(ListaSimpleEventos lista)
+	        - txtNombre: JTextField
+	        - txtFecha: JTextField
+	        - txtLugar: JTextField
+	        + getDatosEvento() : String[]
         }
 
         class FrmParticipante {
-	        -txtNombre
-	        -txtEdad
-	        -txtEquipo
-	        -chkCapitan
-	        -btnAgregarJugador
+	        - txtNombre: JTextField
+	        - txtEdad: JTextField
+	        - txtEquipo: JTextField
+	        - btnAgregarJugador: JButton
+        }
+
+        class FrmProgramarPartido {
+	        - cmbEquipo1: JComboBox
+	        - cmbEquipo2: JComboBox
+	        + getEquiposSeleccionados() : String[]
+        }
+
+        class FrmRegistrarResultado {
+	        - cmbPartidoPendiente: JComboBox
+	        - txtGolesEq1: JTextField
+	        - txtGolesEq2: JTextField
+	        + getMarcador() : int[]
+        }
+
+        class FrmFiltros {
+	        - cmbTipoFiltro: JComboBox
+	        - tblResultados: JTable
+	        + mostrarEventos(lista: ListaSimpleEventos) : void
         }
 
 	}
 	namespace controlador {
         class CtrPrincipal {
-	        -modeloSistema
-	        -vistaLogin
-	        -FrmMenuAdmin vistaMenu
-	        +iniciar()
+	        - modeloSistema: SistemaDeEventos
+	        - vistaLogin: FrmLogin
+	        - vistaMenu: FrmMenuAdmin
+	        + iniciar() : void
         }
 
         class CtrEventos {
-	        -FrmEvento vistaEvento
-	        -Sistema modeloSistema
+	        - modeloSistema: SistemaDeEventos
+	        - vistaEvento: FrmEvento
+	        - vistaParticipante: FrmParticipante
         }
 
         class CtrPartidos {
-	        -FrmProgramarPartido vistaProgramar
-	        -FrmRegistrarResultado vistaResultados
-	        -Evento eventoActual
+	        - eventoActual: Evento
+	        - vistaProgramar: FrmProgramarPartido
+	        - vistaResultados: FrmRegistrarResultado
+        }
+
+	}
+	namespace modelo {
+        class SistemaDeEventos {
+	        - eventos: ListaSimpleEventos
+	        - registroAcciones: PilaEstatica
+	        + validarLogin(rol: String) : boolean
+	        + crearEvento(nombre: String, fecha: String, ubicacion: String) : void
+	        + buscarEvento(nombre: String) : Evento
+	        + getEventosPasados() : ListaSimpleEventos
+	        + getEventosFuturos() : ListaSimpleEventos
+        }
+
+        class Evento {
+	        - nombre: String
+	        - fecha: String
+	        - ubicacion: String
+	        - participantes: ListaDobleParticipantes
+	        - partidosProgramados: ColaDinamicaPartidos
+	        - historialResultados: PilaDinamicaResultados
+	        + agregarParticipante(p: Participante) : void
+	        + programarPartido(local: String, visitante: String) : void
+	        + registrarResultado(local: String, visitante: String, gL: int, gV: int) : void
+        }
+
+        class Participante {
+	        - nombre: String
+	        - edad: int
+	        - nombreEquipo: String
+	        - esCapitan: boolean
+        }
+
+        class Partido {
+	        - equipoLocal: String
+	        - equipoVisitante: String
+	        - golesLocal: int
+	        - golesVisitante: int
+	        - estado: String
+	        + finalizar(gL: int, gV: int) : void
+        }
+
+        class ListaSimpleEventos {
+	        - cabeza: NodoEvento
+	        + insertar(e: Evento) : void
+        }
+
+        class NodoEvento {
+	        - dato: Evento
+	        - siguiente: NodoEvento
+        }
+
+        class NodoParticipante {
+	        - dato: Participante
+	        - anterior: NodoParticipante
+	        - siguiente: NodoParticipante
+        }
+
+        class ColaDinamicaPartidos {
+	        - frente: NodoPartido
+	        - fin: NodoPartido
+	        + encolar(p: Partido) : void
+	        + desencolar() : Partido
+	        + frente() : Partido
+	        + estaVacia() : boolean
+        }
+
+        class NodoPartido {
+	        - dato: Partido
+	        - siguiente: NodoPartido
+        }
+
+        class PilaDinamicaResultados {
+	        - cima: NodoResultado
+	        - tamano: int
+	        + estaVacia() : boolean
+	        + apilar(p: Partido) : void
+	        + desapilar() : Partido
+	        + mostrarPila() : String
+        }
+
+        class NodoResultado {
+	        - dato: Partido
+	        - siguiente: NodoResultado
+        }
+
+        
+
+        class ListaDobleParticipantes {
+	        - cabeza: NodoParticipante
+	        - cola: NodoParticipante
+	        + insertar(p: Participante) : void
+	        + buscarRecursivo(nombre: String) : Participante
         }
 
 	}
 
-    CtrPrincipal --> Sistema
+    CtrPrincipal --> SistemaDeEventos
     CtrPrincipal --> FrmLogin
     CtrPrincipal --> FrmMenuAdmin
+    CtrEventos --> SistemaDeEventos
     CtrEventos --> FrmEvento
-    CtrEventos --> Sistema
+    CtrEventos --> FrmParticipante
+    CtrPartidos --> Evento
     CtrPartidos --> FrmProgramarPartido
     CtrPartidos --> FrmRegistrarResultado
-    CtrPartidos --> Evento
-    Sistema "1" *-- "*" Evento : Contiene
-    Evento "1" *-- "*" Participante : Lista Doble
-    Evento "1" *-- "*" Partido : Pilas/Colas
+    SistemaDeEventos *-- ListaSimpleEventos
+    ListaSimpleEventos *-- NodoEvento
+    NodoEvento --> Evento
+    Evento *-- ListaDobleParticipantes
+    Evento *-- ColaDinamicaPartidos
+    Evento *-- PilaDinamicaResultados
+    ListaDobleParticipantes *-- NodoParticipante
+    NodoParticipante --> Participante
+    ColaDinamicaPartidos *-- NodoPartido
+    NodoPartido --> Partido
+    PilaDinamicaResultados *-- NodoResultado
+    NodoResultado --> Partido
 
 ```
 
