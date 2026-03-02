@@ -232,7 +232,10 @@ classDiagram
     ColaDinamicaPartidos *-- NodoPartido
     NodoPartido --> Partido
     PilaDinamicaResultados *-- NodoResultado
-    NodoResultado --> Partido ```
+    NodoResultado --> Partido 
+
+
+```
 
 # 5. Imágenes del diseño
 1-
