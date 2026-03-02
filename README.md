@@ -236,6 +236,22 @@ direction TB
 
 ```
 
+### Funcionamiento de Pilas y Colas en el Sistema
+
+Para gestionar los datos, dividimos el uso de estructuras en dos tipos según la necesidad de memoria: dinámicas  y estáticas.
+
+#### 1. Estructuras Dinámicas (Basadas en Nodos)
+Las usamos para los partidos del evento porque es imposible predecir cuántos juegos habrá. Si usáramos un arreglo fijo de 50 espacios y se juegan 51, el programa fallaría. Con nodos, la memoria crece y se reduce exactamente según lo que el evento necesite.
+
+* **ColaDinamicaPartidos (Calendario):** Funciona con lógica **FIFO** (Primero en entrar, primero en salir). Nos garantiza un orden cronológico estricto: el primer partido que programamos es el primero en la lista para jugarse.
+* **PilaDinamicaResultados (Historial):** Funciona con lógica **LIFO** (Último en entrar, primero en salir). La rúbrica pide mostrar los resultados más recientes de primero. Al usar una pila, el último resultado registrado queda en la cima, permitiéndonos mostrar los datos más nuevos de forma instantánea sin tener que programar algoritmos pesados para ordenarlos.
+
+#### 2. Estructuras Estáticas (Basadas en Arreglos)
+Las usamos exclusivamente para tareas de control interno del sistema donde **sí** necesitamos poner un límite estricto de memoria para que la aplicación no se sature.
+
+* **PilaEstatica (Registro de acciones):** Funciona como un historial de las últimas acciones del administrador. Al usar un tamaño estricto (ej. 10 acciones), evitamos que un historial infinito consuma toda la memoria RAM de la computadora.
+* **ColaEstatica (Cola de reportes/impresión):** Se encarga de encolar tareas cortas del sistema. Al ponerle un tamaño máximo, prevenimos que el sistema se pegue o sature si el usuario hace demasiadas peticiones al mismo tiempo.
+
 # 5. Imágenes del diseño
 1-
 ![alt text](/img/Imagen1.jpeg)
