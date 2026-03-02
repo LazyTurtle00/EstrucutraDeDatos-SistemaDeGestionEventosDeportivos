@@ -238,29 +238,29 @@ direction TB
 
 # 5. Imágenes del diseño
 1-
-![alt text](image.png)
+![alt text](/img/Imagen1.jpeg)
 2-
-![alt text](Imagen2.jpeg)
+![alt text](/img/Imagen2.jpeg)
 3-
-![alt text](Imagen3.jpeg)
+![alt text](/img/Imagen3.jpeg)
 4-
-![alt text](Imagen4.jpeg)
+![alt text](/img/Imagen4.jpeg)
 5-
-![alt text](Imagen5.jpeg)
+![alt text](/img/Imagen5.jpeg)
 6-
-![alt text](Imagen6.jpeg)
+![alt text](/img/Imagen6.jpeg)
 7-
-![alt text](Imagen7.jpeg)
+![alt text](/img/Imagen7.jpeg)
 8-
-![alt text](Imagen8.jpeg)
+![alt text](/img/Imagen8.jpeg)
 9-
-![alt text](Imagen9.jpeg)
+![alt text](/img/Imagen9.jpeg)
 10-
-![alt text](Imagen10.jpeg)
+![alt text](/img/Imagen10.jpeg)
 11-
-![alt text](Imagen11.jpeg)
+![alt text](/img/Imagen11.jpeg)
 12-
-![alt text](Imagen12.jpeg)
+![alt text](/img/Imagen12.jpeg)
 
 ## Referencias
 Arquitectura Java. (2026). ¿Qué es el Patrón MVC? Recuperado de https://www.arquitecturajava.com/el-modelo-vista-controlador-y-sus-responsabilidades/#%C2%BFQue_es_el_Patron_MVC
