@@ -273,7 +273,7 @@ Las usamos exclusivamente para tareas de control interno del sistema donde **sí
 
 * **ColaEstatica (Cola de reportes/impresión):** Se encarga de encolar tareas cortas del sistema. Al ponerle un tamaño máximo, prevenimos que el sistema se pegue o sature si el usuario hace demasiadas peticiones al mismo tiempo.
 
-# 5. Imágenes del diseño
+# 6. Imágenes del diseño
 1-
 ![alt text](/img/Imagen1.jpeg)
 2-
