@@ -4,7 +4,7 @@ Grupo: E
 
 Integrantes:
 
-- Luis Daniel Jaen Vargas  
+- Luis Daniel Jaen Vargas
 - José Valentín Medrano Páramo  
 - Steven Alonso Fallas Madrigal  
 - Ireany Sevilla Araya
@@ -36,6 +36,28 @@ El patrón Modelo-Vista-Controlador (MVC) separa la lógica de negocio (Modelo),
 | José Valentín Medrano Páramo | Componentes visuales y librerías |
 | Steven Alonso Fallas Madrigal | Diagrama de clases y funcionalidad de colas y pilas |
 | Ireany Sevilla Araya | Diseño de menú e interfaces de usuario |
+
+# 5. Avance Plan de Proyecto
+# 5.1 Avance  2 Semana 11
+
+Durante esta semana, el enfoque principal consistió en la evolución del diseño estático a un prototipo totalmente interactivo en Figma. Se pensó mucho la experiencia de usuario y la arquitectura de navegación.
+ 
+**Detalles del Trabajo Realizado**
+ 
+Interactividad y Prototipado Funcional:
+Se trabajó sobre el archivo original, y se cambió a un prototipo navegable. Esto incluyó la configuración de botones y la vinculación de marcos (frames) para simular el comportamiento real de la aplicación.
+ 
+Desarrollo del Módulo de Autenticación:
+Se diseñó y configuró el flujo completo de Inicio de Sesión. Esto hace que el inicio de sesión sea un proceso fácil de entender para el usuario, ya que es muy intuitivo. Además se hizo la opción de recuperar contraseña.
+ 
+Arquitectura de Menús e Interacción:
+Se trabajó en la operatividad de todos los componentes de navegación. Los menús ahora cuentan con clics y botones funcionales, permitiendo que el usuario explore las diferentes secciones del proyecto de manera intuitiva.
+ 
+Pruebas de Usabilidad del Prototipo:
+Se realizaron pruebas para asegurar que los flujos de usuario no presentaran problemas al navegar en el prototipo, optimizando la respuesta de los botones y la claridad de los menús interactivos.
+ 
+**Estado Actual:**
+El proyecto ha pasado de una fase de diseño visual a una fase de validación funcional, permitiendo a los interesados experimentar la navegación del producto final de forma cercana a la realidad.
 
 **Responsabilidad compartida:**  
 Todos los integrantes participarán en la integración del sistema, pruebas, corrección de errores y también, en el trabajo en equipo para los entregables del presente proyecto.
