@@ -1,4 +1,4 @@
-package estructuras.datos;
+package estructuras.controlador;
 
 import estructuras.modelos.Evento;
 import estructuras.modelos.Participante;

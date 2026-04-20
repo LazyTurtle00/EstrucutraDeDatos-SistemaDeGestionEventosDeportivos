@@ -1,6 +1,7 @@
 package estructuras.vistas;
 
-import estructuras.datos.SistemaDatos;
+import estructuras.controlador.ManejadorJSON;
+import estructuras.controlador.SistemaDatos;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -153,6 +154,7 @@ public class RegistrarResultados extends JFrame {
         boolean guardado = SistemaDatos.guardarResultado(idPartido, puntosUno, puntosDos);
 
         if (guardado) {
+            ManejadorJSON.guardarTodo();
             JOptionPane.showMessageDialog(this, "Resultado registrado correctamente.");
             limpiarCampos();
             actualizarResultados();

@@ -1,6 +1,6 @@
 package estructuras.vistas;
 
-import estructuras.datos.SistemaDatos;
+import estructuras.controlador.SistemaDatos;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;

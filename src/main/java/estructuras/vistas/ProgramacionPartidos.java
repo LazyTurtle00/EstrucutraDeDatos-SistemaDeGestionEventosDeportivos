@@ -1,6 +1,7 @@
 package estructuras.vistas;
 
-import estructuras.datos.SistemaDatos;
+import estructuras.controlador.ManejadorJSON;
+import estructuras.controlador.SistemaDatos;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -183,6 +184,7 @@ public class ProgramacionPartidos extends JFrame {
         boolean guardado = SistemaDatos.guardarPartido(evento, equipoUno, equipoDos, fecha, hora);
 
         if (guardado) {
+            ManejadorJSON.guardarTodo();
             JOptionPane.showMessageDialog(this, "Partido programado correctamente.");
             limpiarCampos();
             actualizarLista();
@@ -206,6 +208,7 @@ public class ProgramacionPartidos extends JFrame {
         boolean eliminado = SistemaDatos.eliminarPartidoPorId(id);
 
         if (eliminado) {
+            ManejadorJSON.guardarTodo();
             JOptionPane.showMessageDialog(this, "Partido eliminado correctamente.");
             txtIdEliminar.setText("");
             actualizarLista();

@@ -1,5 +1,6 @@
 package estructuras.vistas;
 
+import estructuras.controlador.ManejadorJSON;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -12,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import estructuras.datos.SistemaDatos;
+import estructuras.controlador.SistemaDatos;
 
 public class GestionEventos extends JFrame {
 
@@ -116,6 +117,7 @@ public class GestionEventos extends JFrame {
         boolean guardado = SistemaDatos.guardarEvento(nombre, fecha, lugar);
 
         if (guardado) {
+            ManejadorJSON.guardarTodo();
             JOptionPane.showMessageDialog(this, "El evento ha sido guardado correctamente.");
             limpiarCampos();
             actualizarLista();
@@ -130,6 +132,7 @@ public class GestionEventos extends JFrame {
         boolean eliminado = SistemaDatos.eliminarEventoPorNombre(nombre);
 
         if (eliminado) {
+            ManejadorJSON.guardarTodo();
             JOptionPane.showMessageDialog(this, "El evento ha sido eliminado correctamente.");
             limpiarCampos();
             actualizarLista();

@@ -1,5 +1,6 @@
 package estructuras.vistas;
 
+import estructuras.controlador.ManejadorJSON;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -12,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import estructuras.datos.SistemaDatos;
+import estructuras.controlador.SistemaDatos;
 
 public class GestionParticipantes extends JFrame {
 
@@ -125,6 +126,7 @@ public class GestionParticipantes extends JFrame {
         boolean guardado = SistemaDatos.guardarParticipante(nombreEquipo, capitan, cantidadJugadores);
 
         if (guardado) {
+            ManejadorJSON.guardarTodo();
             JOptionPane.showMessageDialog(this, "Participante guardado correctamente.");
             limpiarCampos();
             actualizarLista();
@@ -139,6 +141,7 @@ public class GestionParticipantes extends JFrame {
         boolean eliminado = SistemaDatos.eliminarParticipantePorNombre(nombreEquipo);
 
         if (eliminado) {
+            ManejadorJSON.guardarTodo();
             JOptionPane.showMessageDialog(this, "Participante eliminado correctamente.");
             limpiarCampos();
             actualizarLista();

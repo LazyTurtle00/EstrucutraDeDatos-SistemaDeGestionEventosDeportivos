@@ -4,6 +4,7 @@
 
 package estructuras.sistemadegestioneventosdeportivos;
 
+import estructuras.controlador.ManejadorJSON;
 import estructuras.vistas.VentanaPrincipal;
 
 /**
@@ -13,6 +14,7 @@ import estructuras.vistas.VentanaPrincipal;
 public class SistemaDeGestionEventosDeportivos {
 
     public static void main(String[] args) {
+        ManejadorJSON.cargarTodo();
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

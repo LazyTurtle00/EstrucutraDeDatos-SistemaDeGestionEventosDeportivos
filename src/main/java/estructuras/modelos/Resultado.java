@@ -21,6 +21,13 @@ public class Resultado {
     public int getIdPartido() {
         return idPartido;
     }
+    public int getPuntosEquipoUno() {
+        return puntosEquipoUno;
+    }
+
+    public int getPuntosEquipoDos() {
+        return puntosEquipoDos;
+    }
 
     @Override
     public String toString() {
