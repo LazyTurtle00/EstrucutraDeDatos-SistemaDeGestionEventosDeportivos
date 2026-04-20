@@ -79,9 +79,10 @@ public class MenuAdministrador extends JFrame {
             dispose();
         });
 
-        btnVerResultados.addActionListener(e ->
-                JOptionPane.showMessageDialog(this, "Módulo se desarrollará en tercer avance.")
-        );
+        btnVerResultados.addActionListener(e -> {
+            new VerResultados();
+            dispose();
+        });
 
         btnRegistrarResultados.addActionListener(e -> {}
             new RegistrarResultados();

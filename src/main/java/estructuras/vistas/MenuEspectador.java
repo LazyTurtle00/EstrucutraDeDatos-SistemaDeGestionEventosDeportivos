@@ -66,9 +66,10 @@ public class MenuEspectador extends JFrame {
             dispose();
         });
 
-        btnVerResultados.addActionListener(e ->
-                JOptionPane.showMessageDialog(this, "Módulo se desarrollará en el tercer avance.")
-        );
+        btnVerResultados.addActionListener(e -> {
+            new VerResultados();
+            dispose();
+        });
 
         btnVolver.addActionListener(e -> {
             new VentanaPrincipal();
