@@ -275,29 +275,29 @@ Las usamos exclusivamente para tareas de control interno del sistema donde **sí
 
 # 6. Imágenes del diseño
 1-
-![alt text](/img/Imagen1.jpeg)
+![alt text](/docs/images/Imagen1.jpeg)
 2-
-![alt text](/img/Imagen2.jpeg)
+![alt text](/docs/images/Imagen2.jpeg)
 3-
-![alt text](/img/Imagen3.jpeg)
+![alt text](/docs/images/Imagen3.jpeg)
 4-
-![alt text](/img/Imagen4.jpeg)
+![alt text](/docs/images/Imagen4.jpeg)
 5-
-![alt text](/img/Imagen5.jpeg)
+![alt text](/docs/images/Imagen5.jpeg)
 6-
-![alt text](/img/Imagen6.jpeg)
+![alt text](/docs/images/Imagen6.jpeg)
 7-
-![alt text](/img/Imagen7.jpeg)
+![alt text](/docs/images/Imagen7.jpeg)
 8-
-![alt text](/img/Imagen8.jpeg)
+![alt text](/docs/images/Imagen8.jpeg)
 9-
-![alt text](/img/Imagen9.jpeg)
+![alt text](/docs/images/Imagen9.jpeg)
 10-
-![alt text](/img/Imagen10.jpeg)
+![alt text](//docs/images/Imagen10.jpeg)
 11-
-![alt text](/img/Imagen11.jpeg)
+![alt text](/docs/images/Imagen11.jpeg)
 12-
-![alt text](/img/Imagen12.jpeg)
+![alt text](/docs/images/Imagen12.jpeg)
 
 ## Referencias
 Arquitectura Java. (2026). ¿Qué es el Patrón MVC? Recuperado de https://www.arquitecturajava.com/el-modelo-vista-controlador-y-sus-responsabilidades/#%C2%BFQue_es_el_Patron_MVC
