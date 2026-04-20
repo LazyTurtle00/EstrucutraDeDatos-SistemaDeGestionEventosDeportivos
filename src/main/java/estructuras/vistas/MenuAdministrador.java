@@ -74,17 +74,19 @@ public class MenuAdministrador extends JFrame {
             dispose();
         });
 
-        btnProgramar.addActionListener(e ->
-                JOptionPane.showMessageDialog(this, "Módulo se desarrollará en tercer avance.")
-        );
+        btnProgramar.addActionListener(e -> {
+            new ProgramacionPartidos();
+            dispose();
+        });
 
         btnVerResultados.addActionListener(e ->
                 JOptionPane.showMessageDialog(this, "Módulo se desarrollará en tercer avance.")
         );
 
-        btnRegistrarResultados.addActionListener(e ->
-                JOptionPane.showMessageDialog(this, "Módulo se desarrollará en tercer avance.")
-        );
+        btnRegistrarResultados.addActionListener(e -> {}
+            new RegistrarResultados();
+            dispose();
+        });
 
         btnVolver.addActionListener(e -> {
             new VentanaPrincipal();
