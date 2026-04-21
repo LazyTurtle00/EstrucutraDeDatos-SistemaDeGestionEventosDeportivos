@@ -7,7 +7,7 @@ import estructuras.modelos.Resultado;
 
 public class SistemaDatos {
 
-    public static Evento[] eventos = new Evento[50];
+    private static ListaSimpleEventos listaEventos = new ListaSimpleEventos();
     public static int totalEventos = 0;
     public static int siguienteIdEvento = 1;
 
@@ -22,61 +22,57 @@ public class SistemaDatos {
     public static Resultado[] resultados = new Resultado[100];
     public static int totalResultados = 0;
 
-    public static boolean guardarEvento(String nombre, String fecha, String lugar) {
+    private static ListaSimpleEventos listaEventos = new ListaSimpleEventos();
+    private static int siguienteIdEvento = 1;
+
+    public static boolean guardarEvento(String nombre, String fecha, String ubicacion) {
         if (nombre == null || nombre.trim().equals("")
                 || fecha == null || fecha.trim().equals("")
-                || lugar == null || lugar.trim().equals("")) {
+                || ubicacion == null || ubicacion.trim().equals("")) {
             return false;
         }
 
-        if (totalEventos >= eventos.length) {
-            return false;
-        }
+        Evento evento = new Evento(
+                siguienteIdEvento,
+                nombre.trim(),
+                fecha.trim(),
+                ubicacion.trim()
+        );
 
-        eventos[totalEventos] = new Evento(siguienteIdEvento, nombre.trim(), fecha.trim(), lugar.trim());
-        totalEventos++;
+        listaEventos.agregar(evento);
         siguienteIdEvento++;
+
         return true;
     }
 
     public static String obtenerEventosTexto() {
-        if (totalEventos == 0) {
-            return "No hay eventos registrados.";
-        }
-
-        String texto = "";
-        for (int i = 0; i < totalEventos; i++) {
-            texto += eventos[i].toString() + "\n";
-        }
-
-        return texto;
+        return listaEventos.obtenerTexto();
     }
 
-    public static boolean eliminarEventoPorNombre(String nombre) {
-        if (nombre == null || nombre.trim().equals("")) {
+    public static boolean actualizarEvento(int id, String nombre, String fecha, String ubicacion) {
+        if (nombre == null || nombre.trim().equals("")
+                || fecha == null || fecha.trim().equals("")
+                || ubicacion == null || ubicacion.trim().equals("")) {
             return false;
         }
 
-        int posicion = -1;
+        return listaEventos.actualizar(id, nombre.trim(), fecha.trim(), ubicacion.trim());
+    }
 
-        for (int i = 0; i < totalEventos; i++) {
-            if (eventos[i].getNombre().equalsIgnoreCase(nombre.trim())) {
-                posicion = i;
-                break;
-            }
-        }
+    public static boolean eliminarEventoPorId(int id) {
+        return listaEventos.eliminarPorId(id);
+    }
 
-        if (posicion == -1) {
-            return false;
-        }
+    public static Evento buscarEventoPorId(int id) {
+        return listaEventos.buscarPorId(id);
+    }
 
-        for (int i = posicion; i < totalEventos - 1; i++) {
-            eventos[i] = eventos[i + 1];
-        }
+    public static Evento obtenerEventoEnPosicion(int posicion) {
+        return listaEventos.obtenerEventoEnPosicion(posicion);
+    }
 
-        eventos[totalEventos - 1] = null;
-        totalEventos--;
-        return true;
+    public static int obtenerCantidadEventos() {
+        return listaEventos.obtenerCantidad();
     }
 
     public static boolean guardarParticipante(String nombreEquipo, String capitan, int cantidadJugadores) {

@@ -129,7 +129,7 @@ public class GestionEventos extends JFrame {
     private void eliminarEvento() {
         String nombre = txtNombre.getText();
 
-        boolean eliminado = SistemaDatos.eliminarEventoPorNombre(nombre);
+        boolean eliminado = SistemaDatos.eliminarEventoPorId(id);
 
         if (eliminado) {
             ManejadorJSON.guardarTodo();
