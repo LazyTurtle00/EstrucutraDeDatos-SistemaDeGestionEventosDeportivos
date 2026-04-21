@@ -4,13 +4,13 @@ public class Evento {
     private int id;
     private String nombre;
     private String fecha;
-    private String lugar;
+    private String ubicacion;
 
-    public Evento(int id, String nombre, String fecha, String lugar) {
+    public Evento(int id, String nombre, String fecha, String ubicacion) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
-        this.lugar = lugar;
+        this.ubicacion = ubicacion;
     }
 
     public int getId() {
@@ -25,12 +25,27 @@ public class Evento {
         return fecha;
     }
 
-    public String getLugar() {
-        return lugar;
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + " | Nombre: " + nombre + " | Fecha: " + fecha + " | Lugar: " + lugar;
+        return "ID: " + id
+                + " | Nombre: " + nombre
+                + " | Fecha: " + fecha
+                + " | Ubicación: " + ubicacion;
     }
 }
